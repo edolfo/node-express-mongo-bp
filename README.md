@@ -1,16 +1,17 @@
 node-express-mongo-bp
 =====================
 
-Boilerplate code using node.js, express.js, and mongodb.
+Boilerplate code using [node.js](http://nodejs.org), [express.js](http://expressjs.com/), 
+and [mongoose](https://github.com/learnboost/mongoose) for use with [mongodb](http://www.mongodb.org/).
 
 myApp/package.json
 ==================
 
 All the dependencies are outlined here.  Additional modules not in this repository's description:
 
-* nodemon:  Used to automatically restart the server when a file changes.  Handy during development.
-* stylus:   Write more minimal CSS
-* jade:     Write more minimal HTML
+* [nodemon](https://github.com/remy/nodemon):  Used to automatically restart the server when a file changes.  Handy during development.
+* [stylus](https://github.com/learnboost/stylus):   Write more minimal CSS
+* [jade](https://github.com/visionmedia/jade):     Write more minimal HTML
 
 Installing
 ==========

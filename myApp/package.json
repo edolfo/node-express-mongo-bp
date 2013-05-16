@@ -1,0 +1,13 @@
+{
+    "name": "myApp",
+    "description": "Boilerplate code for a webapp written with node.js, express.js, mongodb, and angularJS",
+    "version":  "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "3.x",
+        "mongoose": "3.6.11",
+        "nodemon": "0.7.8",
+        "jade": "0.30.0",
+        "stylus": "0.32.1"
+    }
+}

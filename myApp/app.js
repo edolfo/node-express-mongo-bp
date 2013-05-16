@@ -38,6 +38,4 @@ var port    =   process.env.PORT,
     ip      =   process.env.IP;
 
 app.listen(port, ip);
-//console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 console.log("Express server listening on %s:%d in %s mode", ip, port, app.settings.env);
-//process.env.PORT, process.env.IP)

@@ -6,34 +6,39 @@ block additionalHeader
     script(type='text/javascript', src='/js/ng/signup.js')
 
 block body
-    .row
-        .small-12.columns
-            h1.appTitle #{title}
-    .row(ng-app)
-        .small-8.columns.small-offset-2
-        form(action="/signup/handler", ng-controller="signupController", name="signupForm", ng-submit="submitForm()")
-            fieldset
-                legend Signup!
-                
-                .row
-                    .small-2.columns
-                        label(for="email").right.inline email:
-                    .small-10.columns
-                        input(type="email", name="email", placeholder="me@here.now", ng-model="email", ng-class="{'error':signupForm.email.$error.email}", required)#email
-                        small.error(ng-show="signupForm.email.$error.email") Not a valid email!
-                .row
-                    .small-2.columns
-                        label(for="pass1").right.inline passphrase:
-                    .small-10.columns
-                        input(type="password", ng-model="pass1", name="pass1", required)#pass1
-                .row
-                    .small-2.columns
-                        label(for="pass2").right.inline passphrase (again):
-                    .small-10.columns
-                        input(type="password", ng-model="pass2", name="pass2", ng-class="{'error':pass1 != pass2}", required)#pass2
-                        small.error(ng-show="pass1 != pass2") Passphrases don't match!
-                .row
-                    .small-10.columns.small-offset-2
-                        button.button.disabled(ng-show="signupForm.$invalid || pass1 != pass2") Sign up
-                        button.button(type="submit", ng-show="signupForm.$valid && pass1 == pass2") Sign up
+    .ng-app(ng-app)
+        .cloak(ng-cloak, ng-controller="signupController")
+            .row
+                .small-12.columns
+                    h1.appTitle #{title}
+            .row(ng-show="sentForm")
+                .small-6.columns.small-offset-3
+                    .alert-box(data-alert, ng-class="{'error': statusCode == 1, 'success': statusCode == 0}") {{ message }}
+            .row
+                .small-8.columns.small-offset-2
+                form(name="signupForm", ng-submit="submitForm()", ng-init="action='/signup/handler'")
+                    fieldset
+                        legend Signup!
                         
+                        .row
+                            .small-2.columns
+                                label(for="email").right.inline email:
+                            .small-10.columns
+                                input(type="email", name="email", placeholder="me@here.now", ng-model="email", ng-class="{'error':signupForm.email.$error.email}", required)#email
+                                small.error(ng-show="signupForm.email.$error.email") Not a valid email!
+                        .row
+                            .small-2.columns
+                                label(for="pass1").right.inline passphrase:
+                            .small-10.columns
+                                input(type="password", ng-model="pass1", name="pass1", required)#pass1
+                        .row
+                            .small-2.columns
+                                label(for="pass2").right.inline passphrase (again):
+                            .small-10.columns
+                                input(type="password", ng-model="pass2", name="pass2", ng-class="{'error':pass1 != pass2}", required)#pass2
+                                small.error(ng-show="pass1 != pass2") Passphrases don't match!
+                        .row
+                            .small-10.columns.small-offset-2
+                                button.button.disabled(ng-show="signupForm.$invalid || pass1 != pass2") Sign up
+                                button.button(type="submit", ng-show="signupForm.$valid && pass1 == pass2") Sign up
+                                

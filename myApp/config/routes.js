@@ -4,4 +4,5 @@ module.exports = function (app){
     app.get('/', root.index);
     app.get('/login', root.login);
     app.get('/signup', root.signup);
+    app.post('/signup/handler', root.signupHandler);
 };

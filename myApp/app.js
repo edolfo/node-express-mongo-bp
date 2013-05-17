@@ -4,7 +4,8 @@
  */
 
 var express = require('express'),
-    routes = require('./routes');
+    routes = require('./routes'),
+    stylus = require('stylus');
 
 var app = module.exports = express();
 
@@ -17,10 +18,23 @@ app.configure(function(){
     app.use(express.methodOverride());
     app.use(express.cookieParser());
     app.use(express.session({ secret: 'your secret here' }));
-    app.use(require('stylus').middleware({ src: __dirname + '/public' }));
+    
+    app.use(stylus.middleware({
+        debug:      true,
+        src:        __dirname + '/public',
+        compile:    stylusCompiler
+    }));
+    
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
 });
+
+
+function stylusCompiler(str){
+    return  stylus(str)
+            .set('compress', true);
+}
+
 
 app.configure('development', function(){
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));

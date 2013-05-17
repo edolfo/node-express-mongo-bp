@@ -1,7 +1,6 @@
 extends ../base/base
 
 block additionalHeader
-    script(type='text/javascript', src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
     script(type='text/javascript', src='//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js')
     script(type='text/javascript', src='/js/ng/signup.js')
 
@@ -14,7 +13,7 @@ block body
             .row(ng-show="sentForm")
                 .small-6.columns.small-offset-3
                     .alert-box(data-alert, ng-class="{'error': statusCode == 1, 'success': statusCode == 0}") {{ message }}
-                    a.close(href="#") &times;
+                        a.close(href="#") &times;
             .row
                 .small-8.columns.small-offset-2
                 form(name="signupForm", ng-submit="submitForm()", ng-init="action='/signup/handler'")

@@ -17,14 +17,17 @@ exports.signupHandler = function(request, response){
     var email = request.body.email,
         pass1 = request.body.pass1,
         pass2 = request.body.pass2;
-    if (pass1 != pass2){
-        return response.json(200, {'statusCode': 1, 'message': 'Passphrases must match!'});
+    if (pass1.length === 0 || pass2.length === 0 || email.length === 0){
+        return response.json(200, {'statusCode': 1, 'message': 'Empty submissions not allowed!'});
+    }
+    else if (pass1 != pass2){
+        return response.json(200, {'statusCode': 2, 'message': 'Passphrases must match!'});
     }
     var user = new User({email:email, hashedPass:pass1});
     user.save(function(err){
         if (err){
             console.log('Error in saving new user with email ' + email + ', error was ' + err.errors);
-            return response.json(200, {'statusCode': 2, 'message': 'Error saving new user'});
+            return response.json(200, {'statusCode': 3, 'message': 'Error saving new user'});
         }
     });
     return response.json(200, {'statusCode': 0, 'message': 'Successfully signed up!'});

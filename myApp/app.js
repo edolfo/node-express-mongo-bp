@@ -4,9 +4,7 @@
  */
 
 var express = require('express'),
-    routes = require('./routes'),
     stylus = require('stylus');
-
 var app = module.exports = express();
 
 // Configuration
@@ -29,12 +27,10 @@ app.configure(function(){
     app.use(express.static(__dirname + '/public'));
 });
 
-
 function stylusCompiler(str){
     return  stylus(str)
             .set('compress', true);
 }
-
 
 app.configure('development', function(){
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -45,8 +41,7 @@ app.configure('production', function(){
 });
 
 // Routes
-
-app.get('/', routes.index);
+require('./config/routes')(app)
 
 var port    =   process.env.PORT,
     ip      =   process.env.IP;

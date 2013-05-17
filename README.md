@@ -12,6 +12,7 @@ All the dependencies are outlined here.  Additional modules not in this reposito
 * [nodemon](https://github.com/remy/nodemon):  Used to automatically restart the server when a file changes.  Handy during development.
 * [stylus](https://github.com/learnboost/stylus):   Write more minimal CSS
 * [jade](https://github.com/visionmedia/jade):     Write more minimal HTML
+* [bcrypt](https://github.com/ncb000gt/node.bcrypt.js): Encryption designed to scale in resistance to brute force attacks.
 
 Installing
 ==========
@@ -27,3 +28,9 @@ By default, this project is set up to run on [cloud9](http://c9.io).  This means
 a specific port and ip address, which are assigned by cloud9.  To change this, change the `port` and `ip` 
 variables in `myApp/app.js` to whatever is suitable.  Note that for most setups, the `ip` argument can be
 omitted entirely, and only the `port` needs to be specified.
+
+Setup
+=====
+
+You will need to change the file `myApp/config/db.SAMPLE.js` to `myApp/config/db.js`, and change
+the variables within accordingly.

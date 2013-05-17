@@ -4,7 +4,11 @@
  */
 
 var express = require('express'),
-    stylus = require('stylus');
+    stylus = require('stylus'),
+    fs = require('fs'),
+    mongoose = require('mongoose'),
+    env = process.env.NODE_ENV || 'development',
+    db = require('./config/db')[env];
 var app = module.exports = express();
 
 // Configuration
@@ -40,8 +44,18 @@ app.configure('production', function(){
     app.use(express.errorHandler());
 });
 
+// database
+var myDB = mongoose.connect(db.db);
+
+var models_path = __dirname + '/models';
+fs.readdirSync(models_path).forEach(function (file) {
+    require(models_path + '/' + file);
+});
+
+console.log(myDB);
+
 // Routes
-require('./config/routes')(app)
+require('./config/routes')(app);
 
 var port    =   process.env.PORT,
     ip      =   process.env.IP;

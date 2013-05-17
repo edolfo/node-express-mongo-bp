@@ -1,3 +1,4 @@
 .c9revisions/
 myApp/node_modules/
 npm-debug.log
+myApp/config/db.js

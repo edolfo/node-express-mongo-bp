@@ -45,14 +45,12 @@ app.configure('production', function(){
 });
 
 // database
-var myDB = mongoose.connect(db.db);
+mongoose.connect(db.db);
 
 var models_path = __dirname + '/models';
 fs.readdirSync(models_path).forEach(function (file) {
     require(models_path + '/' + file);
 });
-
-console.log(myDB);
 
 // Routes
 require('./config/routes')(app);

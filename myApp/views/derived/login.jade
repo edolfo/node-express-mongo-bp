@@ -1,7 +1,39 @@
 extends ../base/base
 
+block additionalHeader
+    script(type='text/javascript', src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+    script(type='text/javascript', src='//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js')
+    script(type='text/javascript', src='/js/ng/login.js')
+
 block body
-    .row
-        .small-12.columns
-            h1.appTitle #{title}
-    p Login!
+    .ng-app(ng-app)
+        .cloak(ng-cloak, ng-controller="loginController")
+            .row
+                .small-12.columns
+                    h1.appTitle #{title}
+            .row(ng-show="sentForm")
+                .small-6.columns.small-offset-3
+                    .alert-box(data-alert, ng-class="{'error': statusCode == 1, 'success': statusCode == 0}") {{ message }}
+                    a.close(href="#") &times;
+            .row
+                .small-8.columns.small-offset-2
+                form(name="loginForm", ng-submit="submitForm()", ng-init="action='/login/handler'")
+                    fieldset
+                        legend Login
+                        
+                        .row
+                            .small-2.columns
+                                label(for="email").right.inline email:
+                            .small-10.columns
+                                input(type="email", name="email", placeholder="me@here.now", ng-model="email", ng-class="{'error':signupForm.email.$error.email}", required)#email
+                                small.error(ng-show="signupForm.email.$error.email") Not a valid email!
+                        .row
+                            .small-2.columns
+                                label(for="pass").right.inline passphrase:
+                            .small-10.columns
+                                input(type="password", ng-model="pass", name="pass", required)#pass
+                        .row
+                            .small-10.columns.small-offset-2
+                                button.button.disabled(ng-show="signupForm.$invalid") Log in
+                                button.button(type="submit", ng-show="signupForm.$valid") Log in
+                                

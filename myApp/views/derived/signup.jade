@@ -14,6 +14,7 @@ block body
             .row(ng-show="sentForm")
                 .small-6.columns.small-offset-3
                     .alert-box(data-alert, ng-class="{'error': statusCode == 1, 'success': statusCode == 0}") {{ message }}
+                    a.close(href="#") &times;
             .row
                 .small-8.columns.small-offset-2
                 form(name="signupForm", ng-submit="submitForm()", ng-init="action='/signup/handler'")

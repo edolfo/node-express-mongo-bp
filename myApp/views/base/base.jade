@@ -1,13 +1,15 @@
 doctype 5
 html(lang="en")
-    include ../lib/header
+    head
+        include ../lib/header
+        block additionalHeader
     
     body
         nav.top-bar
             ul.title-area
                 li.name
                     h1
-                        a(href="/") #{title}
+                        a(href="/") #{appName}
                 li.toggle-topbar.menu-icon
                     a(href='#')
                         span menu

@@ -6,5 +6,5 @@ exports.index = function(request, response){
         appName: appName,
         user: false
     };
-    response.render('derived/index', returnDict);
+    response.render('derived/index.jade', returnDict);
 };

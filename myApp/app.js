@@ -1,6 +1,13 @@
 
 /**
  * Module dependencies.
+ * 
+ * stylus       ->  structured and minimal css
+ * fs           ->  filesystem access
+ * mongoose     ->  mongoDB ORM
+ * env          ->  system environment
+ * db           ->  this app's database connection secrets
+ * engines      ->  consolidate is used to have two view engines - jade and ejs.
  */
 
 var express = require('express'),
@@ -8,14 +15,16 @@ var express = require('express'),
     fs = require('fs'),
     mongoose = require('mongoose'),
     env = process.env.NODE_ENV || 'development',
-    db = require('./config/db')[env];
+    db = require('./config/db')[env],
+    engines = require('consolidate');
 var app = module.exports = express();
 
 // Configuration
 
 app.configure(function(){
     app.set('views', __dirname + '/views');
-    app.set('view engine', 'jade');
+    app.engine('jade', engines.jade);
+    app.engine('ejs', engines.ejs);
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(express.cookieParser());

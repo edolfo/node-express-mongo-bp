@@ -7,7 +7,7 @@ exports.signup = function(request, response){
         title: appName + ': signup',
         appName: appName
     };
-    response.render('derived/signup', returnDict);
+    response.render('derived/signup.jade', returnDict);
 };
 
 /*
@@ -38,7 +38,7 @@ exports.login = function(request, response){
         title: appName + ': login',
         appName: appName
     };
-    response.render('derived/login', returnDict);
+    response.render('derived/login.jade', returnDict);
 };
 
 /*
